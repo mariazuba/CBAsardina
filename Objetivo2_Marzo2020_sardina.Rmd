@@ -1,0 +1,961 @@
+---
+title: ""
+subtitle: ""
+author: ""
+date: ""
+output:
+  word_document:
+    reference_docx: template1.docx
+---
+```{r llama codigos, warning=F, include=T, message=F, echo=FALSE}
+rm(list=ls())   
+library(stringr)
+library(lattice)
+library(ggplot2)
+library(reshape)
+library(dplyr)
+library(ggthemes)
+library(stringr)
+library(knitr)
+source("C:\\InformeSardinacomun\\salidas\\funciones\\functions.R")
+source("C:\\InformeSardinacomun\\salidas\\funciones\\Fn_PBRs.R")
+source("C:\\InformeSardinacomun\\salidas\\funciones\\Fn_DiagramaFase2.R")
+dir.0<-"C:\\InformeSardinacomun\\salidas"
+dir.1<-"C:\\InformeSardinacomun\\codigos"
+dir.2<-"C:\\InformeSardinacomun\\basedatos"
+setwd(dir.1)
+
+system("admb MAE0919")
+system("MAE0919")
+
+system("admb MAE0320") # asesor?a de marzo
+system("MAE0320")      # asesor?a de marzo
+# system("admb MAE0720") #asesor?a de julio
+# system("MAE0720")      #asesor?a de julio
+
+# ASESOR?A DE SEPTIEMBRE
+dat.file1    = "MAE0919.dat"
+dat1        <- lisread(paste(dir.1,dat.file1, sep='/'));
+names(dat1) <- str_trim(names(dat1), side="right")
+rep1        <- reptoRlist("MAE0919.rep")                                               
+std1        <- read.table("MAE0919.std",header=T,sep="",na="NA",fill=T)  
+
+# ASESOR?A DE MARZO
+dat.file2    = "MAE0320.dat"
+dat2        <- lisread(paste(dir.1,dat.file2, sep='/'));
+names(dat2) <- str_trim(names(dat2), side="right")
+rep2        <- reptoRlist("MAE0320.rep")                                               
+std2        <- read.table("MAE0320.std",header=T,sep="",na="NA",fill=T)  
+
+
+dir.create(file.path("C:\\InformeSardinacomun\\","basedatos"))
+setwd(dir.1);file.copy(c("MAE0919.tpl","MAE0919.dat","MAE0320.tpl","MAE0320.dat"),dir.2) 
+
+```
+
+
+# RESUMEN 
+
+En relación a las tendencias de las variables poblacionales se observa que los reclutamientos han mostrado importantes fluctuaciones interanuales y en su historia conocida se aprecian tres períodos relevantes 
+
+   a) Reclutamiento promedio del período 1991-2007 (Rprom. (1991-2007)) con los niveles más bajos de reclutamientos (115 mil millones de peces),
+   b) Rprom. (2008-2012) con los más altos niveles de reclutamiento (413 mil millones de peces) y 
+   c) Rprom. (2013-2019) con reclutamientos medios en torno a 189 mil millones de peces. En relación a los tres períodos identificados, el reclutamiento 2019 es un 35% menor del Rprom. (1991-2007), un 82% menor al Rprom. (2008-2012) y un 61% menor al Rprom. (2013-2019). 
+
+La tendencia de la biomasa total muestra un importante crecimiento a partir del año 2008 que genera un cambio de nivel que se mantiene hasta el presente. Sin embargo, presenta una alta variabilidad producto de las fluctuaciones del reclutamiento. Para el año 2019 se estimó una disminución del 35% respecto al promedio de los últimos 11 años de la serie (2008-2018) y un 2% mayor al promedio histórico de la serie (promedio 1991-2018 = 1,66 millones de t.). 
+
+La biomasa desovante del año 2018/19 fue un 71% mayor al promedio histórico y un 19% menor al promedio de los últimos 11 años. Dado que el modelo tiene una dinámica en año biológico, se asume que la biomasa desovante ocurre en agosto, (inicios del año biológico), además, la fracción adulta corresponde a los grupos de edad 1+ los cuales incrementaron en abundancia y peso en la evaluación actual y, por lo tanto, la biomasa desovante del año biológico 2018-19 no se ve afectada por la disminución del reclutamiento 2019. 
+
+La mortalidad por pesca (Ft) ha sido más bien baja, en general menor a la mortalidad natural (M=1,0 año-1), a partir del año 2013 se encuentra por bajo el valor de FRMS. 
+
+La Ft 2018-2019 se estimó en 0,22, encontrándose un 26% bajo FRMS de acuerdo a lo estimado en la evaluación actual (septiembre 2019). La condición estimada para el año 2018/19 con información completa se encuentra un 46% sobre BDRMS y un 26% bajo FRMS, con una probabilidad del 4% de encontrarse bajo BDRMS, de un 1% de estar en sobre-explotación y un 2% de probabilidad de estar en sobrepesca.
+
+\pagebreak 
+
+# 4. RESULTADOS
+## 4.2.	Objetivo específico 2:
+
+ *“Establecer el estatus actualizado de estos recursos, sobre la base de sus principales indicadores estandarizados de estado y flujo al menos por grupo de pesquerías, incorporando la incertidumbre de estimación involucrada, empleando el mejor conocimiento e información disponible a la fecha de ejecución del estudio, acorde con los estándares definidos por la Subsecretaría de Pesca y Acuicultura y recomendados por los Comités Científico y Técnico respectivos.”*
+ 
+### 4.2.1.	Indicadores del stock
+
+#### Reclutamientos
+
+En relación a las tendencias de las variables poblacionales se observa que los reclutamientos han mostrado importantes fluctuaciones interanuales y en su historia conocida se aprecian tres períodos relevantes, 
+
+a) Rprom(1991-2007) con los niveles más bajos de reclutamientos (**115** mil millones de peces), 
+b) Rprom(2008-2012) con los más altos niveles de reclutamiento (**413** mil millones de peces) y 
+c) Rprom(2013-2019) con reclutamientos medios en torno a **189** mil millones de peces. 
+
+Al respecto, el reclutamiento estimado para el año 2019 (**74** mil millones de peces) fue un **35%** menor del Rprom(1991-2007), un **82%** menor al Rprom(2008-2012) y un **61%** menor al Rprom(2013-2019) (**Tabla 19** y **Figura 35**).
+
+**Falta comparación con evaluación anterior**
+
+
+#### Biomasa total y desovante
+
+La biomasa total de este recurso, es sustentada esencialmente en los grupos de edad 0 y 1 año. En general, los grupos de edad 2+ no revisten mayor contribución en la producción tanto a nivel de desove como de biomasa disponible a la flota. 
+
+La tendencia de la biomasa total muestra un importante crecimiento a partir del año 2008 que genera un cambio de nivel que se mantiene hasta el presente. Sin embargo, presenta una alta variabilidad producto de las fluctuaciones del reclutamiento. 
+
+El promedio de la biomasa total para el período de mayor productividad de sardina común entre los años 2008 y 2018 es de **2,60** millones de toneladas. 
+Para el año 2019 se estimó una biomasa total de **1,70** millones de toneladas, un **35%** menor al promedio de los últimos 11 años de la serie (2008-2018) y un **2%** mayor al promedio histórico de la serie (promedio 1991-2018 = **1,66** millones de t.) (**Tabla 19** y **Figura 36a**). 
+
+Por otro lado, la biomasa desovante promedio de la serie histórica se encuentra en torno a **709** mil toneladas, mientras que el promedio de los últimos 11 años de la serie es de **1,02** millones de toneladas. Al respecto, la biomasa desovante del año 2018/19 fue un **71%** mayor al promedio histórico y un **19%** menor al promedio de los últimos 11 años. 
+
+**Falta comparación con evaluación anterior**
+
+La biomasa desovante al Máximo Rendimiento Sostenido (BD~RMS~) está en torno a las **831** mil toneladas, de esta forma la BD~2018/19~ está un **46%** sobre BD~RMS~ (**Tabla 19** y **Figura 36~b**). 
+
+Dado que el modelo tiene una dinámica en año biológico, se asume que la biomasa desovante ocurre en agosto, (inicios del año biológico), además, la fracción adulta corresponde a los grupos de edad 1+ los cuales incrementaron en abundancia y peso en la evaluación actual y por lo tanto, la biomasa desovante del año biológico 2018-19 no se ve afectada por la disminución del reclutamiento 2019.
+
+**Falta comparación con evaluación anterior**
+
+
+#### Mortalidad por pesca
+
+La mortalidad por pesca (Ft) ha sido más bien baja, en general menor a la mortalidad natural (M=1,0 año-1), excepto para el año 2004 cuando los niveles de biomasa eran bajos. Esto se ve reflejado en las capturas, que, en promedio, han seguido las fluctuaciones en biomasa con tasas de explotación moderadas (**Tabla 19** y **Figura 37**). 
+
+A partir del año 2005, la mortalidad por pesca ha seguido una tendencia al descenso, acentuada durante los años más recientes a partir del año 2013 por bajo el valor de F~RMS~, donde se registró muy bajos rendimientos. 
+
+La Ft 2018-2019 se estimó en 0,22, encontrándose un 26% bajo F~RMS~ de acuerdo a lo estimado en la evaluación actual (**septiembre 2019**).
+
+**Falta comparación con evaluación anterior**
+
+
+#### Selectividades
+
+Por su parte, las selectividades de la flota y cruceros de otoño indican que el recurso alcanza su completo reclutamiento a la pesquería a la edad de 1 año cuando su retención es del **100%** aprox., mientras que los individuos de edad 0 (reclutamientos) son vulnerados entre **72%** (flota) y **77%** (crucero de otoño). 
+
+De igual forma, la información del crucero acústico de verano indica que todos los individuos son vulnerables en un **100%** por el arte de pesca empleado (arrastre de media-agua y cubre-copo) y cubiertos por el diseño de muestreo (**Figura 38**).
+
+
+```{r salidas septiembre, echo=FALSE}
+Amax    <- dat1$nedades        
+Age     <- seq(0,4,1) 
+years1  <- dat1$Ind[,1]                                                              
+nyears1 <- dat1$nanos                                                                
+x1      <-c(years1,rev(years1))
+x1_1    <-c(years1[1],years1[nyears1]+1,nyears1+1/2) #xaxp
+x2_1    <-c(years1[1]-1,years1[nyears1]+1) #xlim
+# BIOMASA TOTAL Y DESOVANTE
+BT1      <- subset(std1,name=="BT")$value
+BT1std   <- subset(std1,name=="BT")$std
+SSBt1    <- subset(std1,name=="SSB")$value
+SSBt1std <- subset(std1,name=="SSB")$std
+bt1      <- c((BT1-1.96*BT1std)*10^-6,rev((BT1+1.96*BT1std)*10^-6))
+ssbt1    <- c((SSBt1-1.96*SSBt1std)*10^-6,rev((SSBt1+1.96*SSBt1std)*10^-6))
+# RECLUTAMIENTOS Y DESVIOS
+Reclutas1     <- subset(std1,name=="Reclutas")$value
+Reclutas1std  <- subset(std1,name=="Reclutas")$std
+logdesvRt1    <- subset(std1,name=="log_desv_Rt")$value
+logdesvRt1std <- subset(std1,name=="log_desv_Rt")$std
+rt1           <- c((Reclutas1-1.96*Reclutas1std)*10^-6,rev(Reclutas1+1.96*Reclutas1std)*10^-6)
+logdrt1       <- c((logdesvRt1-1.96*logdesvRt1std),rev(logdesvRt1+1.96*logdesvRt1std))
+# MORTALIDAD POR PESCA
+Ft1       <- subset(std1,name=="log_Ft")$value
+Ft1std    <- subset(std1,name=="log_Ft")$std
+ft1       <- c(exp((Ft1)-1.96*(Ft1std)),rev(exp((Ft1)+1.96*(Ft1std)))) 
+# F/Frms y B/Brms
+Rpr1       <- subset(std1,name=="RPRequ3")$value
+Rpr1std    <- subset(std1,name=="RPRequ3")$std
+Frpr1     <- subset(std1,name=="Frpr")$value
+Frpr1std  <- subset(std1,name=="Frpr")$std
+rpr1       <- c((Rpr1-1.96*Rpr1std),rev((Rpr1+1.96*Rpr1std)))
+frpr1     <- c((Frpr1-1.96*Frpr1std),rev((Frpr1+1.96*Frpr1std)))
+
+```
+
+```{r salidas de marzo, echo=FALSE}
+Amax    <- dat2$nedades        
+Age     <- seq(0,4,1) 
+years2  <- dat2$Ind[,1]                                                              
+nyears2 <- dat2$nanos                                                                
+x2      <-c(years2,rev(years2))
+x1_2    <-c(years2[1],years2[nyears2]+1,nyears2+1/2) #xaxp
+x2_2    <-c(years2[1]-1,years2[nyears2]+1) #xlim
+# BIOMASA TOTAL Y DESOVANTE
+BT2      <- subset(std2,name=="BT")$value
+BT2std   <- subset(std2,name=="BT")$std
+SSBt2    <- subset(std2,name=="SSB")$value
+SSBt2std <- subset(std2,name=="SSB")$std
+bt2      <- c((BT2-1.96*BT2std)*10^-6,rev((BT2+1.96*BT2std)*10^-6))
+ssbt2    <- c((SSBt2-1.96*SSBt2std)*10^-6,rev((SSBt2+1.96*SSBt2std)*10^-6))
+# RECLUTAMIENTOS Y DESVIOS
+Reclutas2     <- subset(std2,name=="Reclutas")$value
+Reclutas2std  <- subset(std2,name=="Reclutas")$std
+logdesvRt2    <- subset(std2,name=="log_desv_Rt")$value
+logdesvRt2std <- subset(std2,name=="log_desv_Rt")$std
+rt2           <- c((Reclutas2-1.96*Reclutas2std)*10^-6,rev(Reclutas2+1.96*Reclutas2std)*10^-6)
+logdrt2       <- c((logdesvRt2-1.96*logdesvRt2std),rev(logdesvRt2+1.96*logdesvRt2std))
+# MORTALIDAD POR PESCA
+Ft2       <- subset(std2,name=="log_Ft")$value
+Ft2std    <- subset(std2,name=="log_Ft")$std
+ft2       <- c(exp((Ft2)-1.96*(Ft2std)),rev(exp((Ft2)+1.96*(Ft2std)))) 
+# F/Frms y B/Brms
+Rpr2       <- subset(std2,name=="RPRequ3")$value
+Rpr2std    <- subset(std2,name=="RPRequ3")$std
+Frpr2     <- subset(std2,name=="Frpr")$value
+Frpr2std  <- subset(std2,name=="Frpr")$std
+rpr2       <- c((Rpr2-1.96*Rpr2std),rev((Rpr2+1.96*Rpr2std)))
+frpr2     <- c((Frpr2-1.96*Frpr2std),rev((Frpr2+1.96*Frpr2std)))
+```
+
+```{r Figura 35, echo=FALSE,fig.height=7,fig.width=7}
+par(mfrow=c(2,1),mar=c(2,4,1,1)+0.5)
+	plot(x1,rt1 , type="n", xaxp=x1_1,cex.axis=0.8,xaxs= "i",yaxs= "i",
+	xlim=x2_1,ylab="Reclutamientos x 10^6",las=1,xlab="A?o",cex.lab=1.1)
+	polygon(x1, rt1 , col=gray(.2,0.5), border="gray80")
+	polygon(x2, rt2 , col=gray(.8,0.5), border="gray85")
+	#polygon(x3, rt3 , col=gray(.5,0.5), border="gray95")
+	lines(years1,Reclutas1*10^-6,lwd=2,col=1,lty=1)
+	lines(years2,Reclutas2*10^-6,lwd=2,col="red2",lty=2)
+	#lines(years3,Reclutas3*10^-6,lwd=2,col="blue2",lty=2)
+	abline(h=exp(rep1$log_Ro+0.5*0.6^2)*10^-6,col="darkgray",lty=2)
+	text(2017,0.68,"a)",cex=1.2)
+	legend(1995,0.68,c("sept 2019","mar 2020"),lty=c(1,2),col=c("black","red2"),
+	       title="Asesoría",bty="n",lwd=2)
+	box()
+
+	plot(x1, logdrt1, type="n", xaxp=x1_1,cex.axis=0.8,xaxs= "i",yaxs= "i",
+	xlim=x2_1,ylab="Desvios de los Reclutamientos",las=1,xlab="Año",cex.lab=1.1)
+	polygon(x1, logdrt1, col=gray(.2,0.5), border="gray80")
+	polygon(x2, logdrt2, col=gray(.8,0.5), border="gray85")
+	#polygon(x3, logdrt3, col=gray(.5,0.5), border="gray95")
+	lines(years1,logdesvRt1,lwd=2,col=1,lty=1)
+	lines(years2,logdesvRt2,lwd=2,col="red2",lty=2)
+	#lines(years3,logdesvRt3,lwd=2,col="blue2",lty=2)
+	abline(h=0,lty=2,col="darkgray")
+	text(2017,1.45,"b)",cex=1.2)
+	box()
+```
+
+**Figura 35.**	a) Reclutamientos y b) anomalías logarítmicas de los reclutamientos de sardina común. Las líneas roja y negra corresponden al valor esperado del estimador central y las zonas sombreadas a los intervalos de confianza asintóticos de la evaluación (**septiembre 2019 y marzo 2020**).
+
+
+```{r Figura 36, echo=FALSE,fig.height=7,fig.width=7}
+par(mfrow=c(2,1),mar=c(2,4,1,1)+0.5)
+	plot(x1, bt1,type="n",ylim=c(0,max(bt1)),cex.axis=0.8,xaxs="i",yaxs="i",xlim=x2_1,xaxp=x1_1,
+	ylab="Biomasa total (t*10^6)",las=1,xlab="Año",cex.lab=1.1)
+	polygon(x1,bt1, col=gray(.2,0.5),border="gray80")
+	polygon(x2,bt2, col=gray(.8,0.5),border="gray85")
+	#polygon(x3,bt3, col=gray(.5,0.5),border="gray95")
+	lines(years1,BT1*10^-6,lwd=2,col=1,lty=1)
+	lines(years2,BT2*10^-6,lwd=2,col="red2",lty=2)
+	#lines(years3,BT3*10^-6,lwd=2,col="blue2",lty=2)
+	text(2017,3.6,"a)",cex=1.2)
+	legend(1995,4,c("sept 2019","mar 2020"),lty=c(1,2),col=c("black","red2"),
+	       title="Asesoría",bty="n",lwd=2)
+	box()
+	
+	plot(x1,ssbt1,type="n",ylim=c(0,max(ssbt1)),cex.axis=0.8,xaxs="i",yaxs="i",xlim=x2_1,xaxp=x1_1,
+	ylab="Biomasa desovante (t*10^6)",las=1,xlab="Año",cex.lab=1.1)  
+	polygon(x1,ssbt1,col=gray(.2,0.5), border="gray80")
+	polygon(x2,ssbt2,col=gray(.8,0.5), border="gray85")
+	#polygon(x3,ssbt3,col=gray(.5,0.5), border="gray95")
+	lines(years1,SSBt1*10^-6,lwd=2,col=1,lty=1)   
+	lines(years2,SSBt2*10^-6,lwd=2,col="red2",lty=2)
+	#lines(years3,SSBt3*10^-6,lwd=2,col="blue2",lty=2)
+	
+	lines(years1,rep(rep1$SSBpbr[3]*10^-6,nyears1),lwd=2,col="green3")
+	text(2002,rep1$SSBpbr[3]*10^-6+0.15,"BDRMS",cex=1.2,col="black")
+	text(2017,2.5,"b)",cex=1.2)
+  box()
+  
+```
+
+**Figura 36.**	a) Biomasa total (t.) y b) desovante (t.) de sardina común. Las líneas roja y negra corresponden al valor esperado del estimador central y las zonas sombreadas a los intervalos de confianza asintóticos de la evaluación (**septiembre 2019 y marzo 2020**). La línea verde corresponde al punto biológico de referencia BD~RMS~.
+
+
+```{r Figura 37, echo=FALSE,fig.height=4,fig.width=7}
+par(mfrow=c(1,1),mar=c(2,4,1,1)+0.5)
+	plot(x1, ft1, xaxp=x1_1,cex.axis=0.8,xaxs= "i",yaxs= "i",
+	xlim=x2_1,type="n", ylab="Mortalidad por pesca (F)",las=1,xlab="A?o",cex.lab=1.1)
+	polygon(x1, ft1,  col=gray(.2,0.5), border="gray80")
+	polygon(x2, ft2,  col=gray(.8,0.5), border="gray85")
+	#polygon(x3, ft3,  col=gray(.5,0.5), border="gray95")
+	lines(years1,exp(Ft1),lwd=2,col=1,lty=1)
+	lines(years2,exp(Ft2),lwd=2,col="red2",lty=2)
+	#lines(years3,exp(Ft3),lwd=2,col="blue2",lty=2)
+	
+	lines(years1,rep(1.0,nyears1),lty=2)
+	lines(years1,rep(rep1$Fs[2],nyears1),lwd=2,col="green3")
+	text(c(2015,2015),c(1.0+0.03,rep1$Fs[2]+0.03),c("M","Frms"),cex=1.2)
+	legend(2006,1.5,c("sept 2019","mar 2020"),lty=c(1,2,2),col=c("black","red2"),
+	       title="Asesoría",bty="n",lwd=2)
+	 box()
+	 
+```
+
+**Figura 37.**	Mortalidad por pesca anual (F año^-1^) de sardina común. Las líneas roja y negra corresponden al valor esperado del estimador central y las zonas sombreadas a los intervalos de confianza asintóticos de la evaluación (**septiembre 2019 y marzo 2020**). La línea verde corresponde al punto biológico de referencia F~RMS~.
+
+
+
+```{r Figura 38, echo=FALSE,fig.height=5,fig.width=5}
+par(mfrow=c(1,1),mar=c(4,4,1,1)+0.5,oma=c(1,1,2,0))
+	plot(Age,rep2$Sel_flota[1,],type="l",lwd=2,las=1,ylim=c(0,1.1),ylab="Selectividad",xlab="Edad (año)")
+	lines(Age,rep2$Sel_reclas[1,],type="o",pch="o")
+	lines(Age,rep2$Sel_pelaces[1,],type="o",pch="x")
+	legend (2,0.5,c("Flota","Crucero verano","Crucero otoño"),pch=c("","o","x"),lwd=c(2,1,1))
+
+```
+
+**Figura 38.**	Patrón de explotación o selectividad de la flota y de los cruceros acústicos de sardina común de la evaluación (**marzo 2020**).
+
+
+
+
+```{r PBRs asesoria septiembre, warning=F, include=T, message=F, echo=FALSE}
+# PBRs ASESORIA SEPTIEMBRE 
+Fmort 	    <- seq(0,3.5,0.02)           # vector de mortalidad por pesca para la curva de YPR y SPR
+	nf          <- length(Fmort) 
+	R0 		      <- 1  
+Rmed1        <- mean(Reclutas1)                  # Reclutamiento promedio serie historica
+Bmed1        <- mean(SSBt1)                      # Paso 1: BDpromedio serie hist?rica 1990-2008
+Fmedian1     <- exp(median(Ft1))
+
+Dat<-list()
+Dat$M		  <- dat1$par[5]                  # M se asume constate para edades y a?os
+Dat$Tspw	<- dat1$Dt[3]              # corresponde a la ?poca de desove en sardina es 2/12 (a?o biol?gico)
+Dat$Mad	  <- dat1$madurezsexual      # Paso 1:  Fmediana serie hist?rica 1990-2008
+Dat$Wmed	<- colMeans(dat1$Wmed)      # vector del promedio del peso medio a la edad (suma las columnas) 
+Dat$Wini	<- colMeans(dat1$Wini) 
+Dat$Sel   <- rep1$S_f[1,] 
+
+Bobj        <-c(.85,.80,.60,.55,.52,.50,.45,.40,.30,.325,0.425)
+Fobj      	<- optim(par=rep(0.,11),fn=SPRFpbr,method='BFGS')
+
+SPR1 		    <- SPRFmort(Rmed1,c(0,Fobj$par,Fmedian1,rep1$Ftot[25]),Amax,Dat) 
+pSPR_Fmh1    <- as.numeric(SPR1[13,4])                     # Paso 2: C?lculo de la curva SPR
+pB_Fmh1      <- pSPR_Fmh1-0.05                             # Paso 3: Aproximaci?n obtenci?n de %BD(Fmh)
+SPRcurv1 		<- SPRFmort(R0,Fmort,Amax,Dat) 
+```
+
+
+```{r PBRs asesoria marzo, warning=F, include=T, message=F, echo=FALSE}
+#### *PBRs* ASESOR?A DE MARZO
+Fmort 	    <- seq(0,3.5,0.02)           # vector de mortalidad por pesca para la curva de YPR y SPR
+	nf          <- length(Fmort) 
+	R0 		      <- 1
+Rmed2        <- mean(Reclutas2)                  # Reclutamiento promedio serie historica
+Bmed2        <- mean(SSBt2)                      # Paso 1: BDpromedio serie hist?rica 1990-2008
+Fmedian2     <- exp(median(Ft2))
+
+Dat<-list()
+Dat$M		  <- dat2$par[5]                  # M se asume constate para edades y a?os
+Dat$Tspw	<- dat2$Dt[3]              # corresponde a la ?poca de desove en sardina es 2/12 (a?o biol?gico)
+Dat$Mad	  <- dat2$madurezsexual      # Paso 1:  Fmediana serie hist?rica 1990-2008
+Dat$Wmed	<- colMeans(dat2$Wmed)      # vector del promedio del peso medio a la edad (suma las columnas) 
+Dat$Wini	<- colMeans(dat2$Wini) 
+Dat$Sel   <- rep2$Sel_flota[1,] 
+
+Bobj        <-c(.85,.80,.60,.55,.52,.50,.45,.40,.30,.325,0.425)
+Fobj      	<- optim(par=rep(0.,11),fn=SPRFpbr,method='BFGS')
+
+SPR2 		    <- SPRFmort(Rmed2,c(0,Fobj$par,Fmedian2,rep2$Ftot[25]),Amax,Dat) 
+pSPR_Fmh2    <- as.numeric(SPR2[13,4])                     # Paso 2: C?lculo de la curva SPR
+pB_Fmh2      <- pSPR_Fmh2-0.05                             # Paso 3: Aproximaci?n obtenci?n de %BD(Fmh)
+SPRcurv2 		<- SPRFmort(R0,Fmort,Amax,Dat) 
+```
+
+
+
+```{r pbrs septiembre-tabla19, echo=FALSE}
+# ASESOR?A DE SEPTIEMBRE
+Bo1           <- rep1$SSBpbr[1]                         # Paso 4: Obtenci?n de Bo
+BRMS1         <- rep1$SSBpbr[3]                         # Paso 5: Obtenci?n de Brms = 60%SPRo = 55%Bo
+FRMS1         <- rep1$Fs[2]
+BLIM1         <- Bo1*0.275                              # Paso 6: Obtenci?n de Blim = 20%Bo 
+FLIM1         <- rep1$Fs[3]                             # Paso 6: Obtenci?n de Flim = 30%SPRo
+SpB1          <- SSBt1                                  # BD serie hist?rica de evaluaci?n de stock 
+SpBSE1        <- SSBt1std                               # desviaci?n estandar BD
+ln_Fyr1       <- Ft1                                    # logaritmo de Ft
+ln_FSE1       <- Ft1std                                 # logaritmo de la desviaci?n standar de Ft
+```
+
+
+```{r pbrs marzo-Tabla 19, echo=FALSE}
+# ASESOR?A DE MARZO
+Bo2           <- rep2$SSBpbr[1]                         # Paso 4: Obtenci?n de Bo
+BRMS2         <- rep2$SSBpbr[3]                         # Paso 5: Obtenci?n de Brms = 60%SPRo = 55%Bo
+FRMS2         <- rep2$Fs[2]
+BLIM2         <- Bo2*0.275                              # Paso 6: Obtenci?n de Blim = 20%Bo 
+FLIM2         <- rep2$Fs[3]                             # Paso 6: Obtenci?n de Flim = 30%SPRo
+SpB2          <- SSBt2                                  # BD serie hist?rica de evaluaci?n de stock 
+SpBSE2        <- SSBt2std                               # desviaci?n estandar BD
+ln_Fyr2       <- Ft2                                    # logaritmo de Ft
+ln_FSE2       <- Ft2std                                 # logaritmo de la desviaci?n standar de Ft
+```
+\pagebreak 
+
+**Tabla 19.** Variables poblacionales de la sardina común estimadas en las evaluaciones de stock (**septiembre 2019 y marzo 2020**).
+
+```{r Tabla 19, echo=FALSE,warning=FALSE}
+VarPobl1<- cbind(anos=years2,BD_sept=c(SSBt1,"-"),BD_mar=SSBt2,BT_sept=c(BT1,"-"),BT_mar=BT2,R_sept=c(Reclutas1,"-"),R_mar=Reclutas2,F_sept=c(round(exp(Ft1),3),"-"),F_mar=round(exp(Ft2),3))
+
+kable(VarPobl1)
+setwd(dir.2)
+write.csv(VarPobl1, file="Tabla_19.csv",append = T)
+setwd(dir.1)
+
+
+#library(htmlTable )
+#htmlTable(VarPobl1,tfoot = "este es el pie de tabla",col.rgroup = c("none", "grey"))
+
+#library(kableExtra)
+#kable(VarPobl1) %>%
+#  kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+ [^1]: *incluir Tabla_19.csv en carpeta de base de datos de informe*
+
+\pagebreak 
+
+**Tabla 20.** Índices de reducción anual de F respecto de F~RMS~ (F/F~RMS~), BD respecto de BD~RMS~ (BD/BD~RMS~), tasas de explotación anual referidos a la biomasa (Y/BT) y a la abundancia estimada (C#/N#) de sardina común estimadas en la evaluación (**septiembre 2019 y marzo 2020**).
+
+
+```{r Tabla 20, echo=FALSE,warning=FALSE}
+VarPobl2<- cbind(anos=years2,"F/F~RMS~**S**"=c(round(exp(Ft1)/FRMS1,3),"-"),"F/F~RMS~**M**"=round(exp(Ft2)/FRMS2,3),"BD/BD~RMS~**S**"=c(round(SSBt1/BRMS1,3),"-"),"BD/BD~RMS~**M**"=round(SSBt2/BRMS2,3),"Y/BT_**S**"=c(round(rep1$desembarquepred/BT1,3),"-"),"Y/BT_**M**"=round(rep2$desembarquepred/BT2,3),"C/N_**S**"=c(round(rowSums(rep1$pred_Ctot)/rowSums(rep1$N),3),"-"),"C/N_**M**"=round(rowSums(rep2$pred_Ctot)/rowSums(rep2$N),3))
+kable(VarPobl2)
+
+setwd(dir.2)
+write.csv(VarPobl2, file="Tabla_20.csv")
+setwd(dir.1)
+```
+
+
+
+[^1]: *incluir Tabla_20.csv en carpeta de base de datos de informe*
+
+### 4.2.2.	Estado de explotación 
+
+En la **Tabla 21** se muestran los valores calculados en la asesoría de **marzo 2020** de F~RMS~, BD~RMS~ y BD~LIM~ recomendados por el Comité Científico Técnicos de Pelágicos Pequeños (Informe Técnico CCT-PP N°01/2015) de acuerdo con la metodología discutida durante el segundo taller (Abril, 2014) y tercer taller (Agosto, 2014) de PBRs (*Payá et al, 2014*).
+
+La **Figura 39** muestra la curva de Biomasa Desovante Por Recluta (BDPR) calculada junto al valor de F~RMS~ y su correspondientes %BDPR. Por otro lado, la **Tabla 21** muestra el valor mediano de la mortalidad por pesca experimentado históricamente (F~mh~) por el stock de sardina común centro-sur cercano a F53%BDPR un porcentaje bajo considerando los altos niveles de mortalidad por pesca que ha experimentado el stock (bajo el valor de mortalidad natural, M=1,0). 
+
+Esto podría explicarse por la ubicación de la curva de selectividad respecto a la madurez, donde la selectividad se encuentra a la izquierda de la curva de madurez, producto de que la pesquería presenta una alta selección de juveniles, de manera que la selectividad de la flota comienza antes de la madurez. Esta condición produciría valores de F60% más moderados, que aumentaría si la selectividad fuese igual a la madurez. 
+
+
+```{r Figura 39,echo=FALSE,fig.height=5,fig.width=10}
+par(mfrow=c(1,2),mar=c(4,4.5,2,1)+0.5)
+
+plot(seq(0,4,1),Dat$Mad,type="l",ylim=c(0,1.05),ylab="Madurez y selectividad",xlab="Edad (años)",
+     las=1,col=3,lwd=2)
+	lines(seq(0,4),rep2$Sel_flota[1,],col=4,lwd=2)
+	legend(1.5,max(rep2$Sel_flota[1,])-0.5,c("Madurez","Selectividad"),
+	col=c(3,4),bty="n",lwd=c(2,2),lty=c(1,1),cex=1)
+
+plot(SPRcurv2[,1],SPRcurv2[,4],type="l",ylab="%BDPR",xlab="Mortalidad por pesca (F)",lwd=2,las=1,col=4)
+	abline(h=0.6,v=FRMS2,col=5,lty=1)
+	text(1,0.62,"FRMS = 0.29 ",cex=0.8,col=4)
+```
+**Figura 39.**	Madurez, Selectividad (Panel izquierdo) y Curva de Biomasa por Recluta (%BDPR) (Panel derecho), utilizados en los cálculos de F~RMS~.
+
+
+
+**Tabla 21.** Puntos Biológicos de Referencia de biomasa (miles t) estimada en la evaluación de stock (**septiembre 2019 y marzo 2020**) para sardina común, calculados siguiendo los pasos descritos en la metodología de este informe.
+
+```{r Tabla 21, echo=FALSE}
+Tabla3.1<-rbind( BDpromedio=c(round(Bmed1/10^3,0),round(Bmed2/10^3,0)),Fmh=c(round(Fmedian1,2),round(Fmedian2,2)), "%BDPR_Fmh"=c(pSPR_Fmh1*100,pB_Fmh2*100), "%BDPR_Frms"=c(60,60),
+	"%BD_Fmh"=c(pB_Fmh1*100,pB_Fmh2*100),"%BD_Frms"=c(55,55),BDo=c(round(Bo1/10^6,2),round(Bo2/10^6,2)),"BD55%"=c(round(BRMS1/10^3,0),round(BRMS2/10^3,0)),"BD27.5%"=c(round(BLIM1/10^3,0),round(BLIM2/10^3,0)))
+colnames(Tabla3.1)<-c("Sept","Mar")
+kable(Tabla3.1)
+
+```
+
+La **Figura 40~a~** muestra que en el inicio de la serie histórica la biomasa indicaría una caída BD < BD~RMS~ entre los años 1994 y 1995 producto probablemente de fallas sucesivas en los reclutamientos. El estado de la pesquería de sardina común durante los años 1999 y 2005 estuvo marcado por condiciones ambientales “El Niño” 1997-1998, provocando la caída hacia niveles inferiores de la biomasa desovante límite (BD~LIM~) bajo el cual una pesquería califica de agotada o colapsada. 
+
+A partir del 2006 comienza un período favorable para la condición de sardina común, ingresando a un proceso de expansión poblacional que permite el año 2009 desplazarse hacia un nivel de biomasa desovante superior al BDRMS. En la evaluación actual (**septiembre 2019**) la **BD~2018/19~** se encuentra un **46%** sobre BD~RMS~ (**Figura 40~b~**).
+
+En términos de la mortalidad por pesca (Ft año^-1^), ésta se había mantenido por sobre el nivel objetivo de referencia F~RMS~ en prácticamente toda la serie histórica analizada producto de la alta selección de juveniles capturados antes de que estos maduren (**Figura 40~c~**). 
+
+La alta selección de juveniles produciría valores de F~RMS~ (F60%BDPR) más moderados, que aumentaría si la selectividad fuese igual a la madurez. A partir del año 2013 los niveles de Ft se han mantenido bajo el nivel de referencia generado posiblemente por las caídas de los reclutamientos en algunos años y las bajas CBAs recomendadas luego de la implementación de los PBRs. Con respecto a la razón entre *F~2018/19~* y F~RMS~ fue de **0,74**, siendo un **26% inferior** al F~RMS~ (**Figura 40~d~**).
+
+
+```{r estatus septiembre, echo=FALSE}
+# ASESOR?A DE SEPTIEMBRE
+rprSEPT     <-subset(std1,name=="RPRequ3")$value[length(years1)]
+rprSEPTstd  <-subset(std1,name=="RPRequ3")$std[length(years1)]
+FrprSEPT    <-subset(std1,name=="Frpr")$value[length(years1)]
+FrprSEPTstd <-subset(std1,name=="Frpr")$std[length(years1)]
+
+```
+
+```{r estatus marzo, echo=FALSE}
+#ASESOR?A DE MARZO
+rprMAR     <-subset(std2,name=="RPRequ3")$value[length(years2)]
+rprMARstd  <-subset(std2,name=="RPRequ3")$std[length(years2)]
+FrprMAR    <-subset(std2,name=="Frpr")$value[length(years2)]
+FrprMARstd <-subset(std2,name=="Frpr")$std[length(years2)]
+
+```
+
+
+```{r estatus septiembre-figura40, echo=FALSE}
+### *ASESOR?A DE SEPTIEMBRE*
+# biomasa desovante vs BDrms
+xbs1 <-rnorm(1000, mean = rprSEPT, sd = rprSEPTstd)
+xbs  <-seq(min(xbs1),max(xbs1),0.005)
+ybs  <-dnorm(xbs, mean = rprSEPT, sd =rprSEPTstd)
+
+icbs <-qnorm(c(0.05,0.95,0.5),rprSEPT,rprSEPTstd)
+xxbs <-c(xbs[xbs>=icbs[1]&xbs<=icbs[2]],rev(xbs[xbs>=icbs[1]&xbs<=icbs[2]]))
+yybs <-c(ybs[xbs>=icbs[1]&xbs<=icbs[2]],rep(0,length(ybs[xbs>=icbs[1]&xbs<=icbs[2]])))
+# mortalidad por pesca vs Frms
+xfs1 <- rnorm(1000, mean = FrprSEPT, sd = FrprSEPTstd)
+xfs  <-seq(min(xfs1),max(xfs1),0.005)
+yfs  <-dnorm(xfs, mean = FrprSEPT, sd =FrprSEPTstd)
+
+icfs <-qnorm(c(0.05,0.95,0.5),FrprSEPT,FrprSEPTstd)
+xxfs <-c(xfs[xfs>=icfs[1]&xfs<=icfs[2]],rev(xfs[xfs>=icfs[1]&xfs<=icfs[2]]))
+yyfs <-c(yfs[xfs>=icfs[1]&xfs<=icfs[2]],rep(0,length(yfs[xfs>=icfs[1]&xfs<=icfs[2]])))
+```
+
+
+```{r estatus marzo-figura 40, echo=FALSE}
+### *ASESOR?A DE MARZO*
+#______________________________________________________________________________
+# biomasa desovante vs BDrms
+xbm1 <-rnorm(1000, mean = rprMAR, sd = rprMARstd)
+xbm  <-seq(min(xbm1),max(xbm1),0.005)
+ybm  <-dnorm(xbm, mean = rprMAR, sd =rprMARstd)
+
+icbm <-qnorm(c(0.05,0.95,0.5),rprMAR,rprMARstd)
+xxbm <-c(xbm[xbm>=icbm[1]&xbm<=icbm[2]],rev(xbm[xbm>=icbm[1]&xbm<=icbm[2]]))
+yybm <-c(ybm[xbm>=icbm[1]&xbm<=icbm[2]],rep(0,length(ybm[xbm>=icbm[1]&xbm<=icbm[2]])))
+# mortalidad por pesca vs Frms
+xfm1 <-rnorm(1000, mean = FrprMAR, sd = FrprMARstd)
+xfm  <-seq(min(xfm1),max(xfm1),0.005)
+yfm  <-dnorm(xfm, mean = FrprMAR, sd =FrprMARstd)
+icfm <-qnorm(c(0.05,0.95,0.5),FrprMAR,FrprMARstd)
+xxfm <-c(xfm[xfm>=icfm[1]&xfm<=icfm[2]],rev(xfm[xfm>=icfm[1]&xfm<=icfm[2]]))
+yyfm <-c(yfm[xfm>=icfm[1]&xfm<=icfm[2]],rep(0,length(yfm[xfm>=icfm[1]&xfm<=icfm[2]])))
+```
+
+
+
+```{r Figura 40, echo=FALSE, fig.height=8,fig.width=10}
+par(mfcol=c(2,2),mar=c(4,4,1,1)+0.5)
+plot(x1, rpr1,type="n",ylim=c(0,max(rpr1)),cex.axis=0.8,xaxs="i",yaxs="i",xlim=x2_1,xaxp=x1_1,
+	ylab="BD/BDrms",las=1,xlab="Año",cex.lab=1.1)
+polygon(x1,rpr1, col=gray(.2,0.5),border="gray80")
+polygon(x2,rpr2, col=gray(.8,0.5),border="gray85") # ASESORIA MARZO
+#polygon(x3,rpr3, col=gray(.5,0.5),border="gray95") # ASESORIA JULIO
+lines(years1,Rpr1,lwd=2,col=1,lty=1)
+lines(years2,Rpr2,lwd=2,col="red2",lty=2) #ASESOR?A MARZO
+#lines(years3,Rpr3,lwd=2,col="blue2",lty=2) #ASESORIA JULIO
+abline(h=c(0.5,1),lty=2,col=c("red","green3"))
+text(c(2003,2003),c(0.5,1)+0.1,c("BDlim","BDrms"),cex=1.2)
+text(2017,3,"a)",cex=1.5)
+#legend(1995,3,c("sept 2019","mar 2020","jul 2020"),lty=c(1,2,2),col=c("black","red2","blue2"),bty="n",lwd=2)
+box()
+
+plot(x1,frpr1,type="n",ylim=c(0,max(frpr1)),cex.axis=0.8,xaxs="i",yaxs="i",xlim=x2_1,xaxp=x1_1,                ylab="F/Frms",las=1,xlab="Año",cex.lab=1.1)                
+polygon(x1,frpr1,col=gray(.2,0.5), border="gray80")
+polygon(x2,frpr2,col=gray(.8,0.5), border="gray85") #ASESORIA MARZO
+#polygon(x3,frpr3,col=gray(.5,0.5), border="gray95") #ASESORIA JULIO
+lines(years1,Frpr1,lwd=2,col=1,lty=1)   
+lines(years2,Frpr2,lwd=2,col="red2",lty=2) #ASESOR?A MARZO
+#lines(years3,Frpr3,lwd=2,col="blue2",lty=2) #ASESOR?A JULIO
+abline(h=1,lty=2,col="green3")
+text(2005,1+0.2,"Frms",cex=1.2)
+text(2017,4.8,"c)",cex=1.5)
+box()
+
+plot(xbs,ybs,type="l",ylab="Densidad de probabilidad",xaxs="i",
+	xlab="BDlast/BDrms",las=1,yaxs= "i",ylim=c(0,2.7),xlim=c(0,2.5))
+polygon(xxbs,yybs,col=gray(0.2,0.5),border="gray85")
+polygon(xxbm,yybm,col=gray(0.8,0.7),border="gray80")#ASESOR?A MARZO
+#polygon(xxbj,yybj,col=gray(0.5,0.7),border="gray95")#ASESORIA JULIO
+
+lines(xbs,ybs,lwd=2,lty=1)
+lines(xbm,ybm,lwd=2,col="red2",lty=2)#ASESOR?A MARZO
+#lines(xbj,ybj,lwd=2,col="blue2",lty=2)#ASESORIA JULIO
+
+legend(0.15,2.6,c(paste("sept 2019_IC95% = [",round(icbs[1],3),"-",round(icbs[2],3),"]",sep=" "),paste("mar 2020_IC95% = [",round(icbm[1],3),"-",round(icbm[2],3),"]",sep=" ")), lty=c(1,2),col=c("black","red2"),bty="n",lwd=2)
+text(2.2,2.5,"b)",cex=1.5)		
+#	paste("jul 2020_IC95% = [",round(icbj[1],3),"-",round(icbj[2],3),"]",sep=" ")),
+#	lty=c(1,2,2),col=c("black","red2","blue2"),bty="n",lwd=2)
+box()
+
+plot(xfs,yfs,type="n",ylab="Densidad de probabilidad",xaxs="i",
+	xlab="Flast/Frms",las=1,yaxs= "i",ylim=c(0,3),xlim=c(0,1.8))
+polygon(xxfs,yyfs,col=gray(0.2,0.5),border="gray85")
+polygon(xxfm,yyfm,col=gray(0.8,0.5),border="gray80")#ASESOR?A MARZO
+#polygon(xxfj,yyfj,col=gray(0.5,0.5),border="gray95")#ASESORIA JULIO
+
+lines(xfs,yfs,lwd=2,lty=1)
+lines(xfm,yfm,lwd=2,col="red2",lty=2)#ASESOR?A MARZO
+#lines(xfj,yfj,lwd=2,col="blue2",lty=2)#ASESORIA JULIO
+
+legend(0.2,3,c(paste("sept 2019_IC95% = [",round(icfs[1],3),"-",round(icfs[2],3),"]",sep=" "),paste("mar 2020_IC95% = [",round(icbm[1],3),"-",round(icbm[2],3),"]",sep=" ")), lty=c(1,2),col=c("black","red2"),bty="n",lwd=2)
+	#paste("mar 2020_IC95% = [",round(icfm[1],3),"-",round(icfm[2],3),"]",sep=" "),
+	#paste("jul 2020_IC95% = [",round(icfj[1],3),"-",round(icfj[2],3),"]",sep=" ")),
+	#lty=c(1,2,4),col=c("black","red2","blue2"),bty="n",lwd=2)
+text(1.6,2.8,"d)",cex=1.5)
+box()
+```
+
+**Figura 40.**	(a) Razón BD/BD~RMS~, (b) la distribución de probabilidad de BD~last~/BD~RMS~ (c) razón F/F~RMS~ y (d) la distribución de probabilidad F~last~/F~RMS~.
+
+
+El diagrama de fase de la asesoría actual (**septiembre 2019**) la condición estimada para el año *2018/19* con información completa se encuentra un **46%** sobre BD~RMS~ y un **26%** bajo F~RMS~, con una probabilidad del **4%** de encontrarse bajo BD~RMS~, de un **1%** de estar en sobre-explotación y un **2%** de probabilidad de estar en sobrepesca (**Tabla 22 y Figuras 41**).
+
+#
+
+
+```{r probabilidades, echo=FALSE}
+### *Probabilidad de estar bajo BRMS*
+#Asesor?a Septiembre #P(BD<BDrms) 
+pa1<-pnorm(1,rprSEPT,rprSEPTstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Marzo #P(BD<BDrms) 
+pa2<-pnorm(1,rprMAR,rprMARstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Julio #P(BD<BDrms) 
+#pnorm(1,rprJUL,rprJULstd,lower.tail = TRUE,log.p = F)
+
+### *Probabilidad de estar bajo FRMS*
+#Asesor?a Septiembre #P(F>Frms)
+pb1<-1-pnorm(1,FrprSEPT,FrprSEPTstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Marzo #P(F>Frms)
+pb2<-pnorm(1,FrprMAR,FrprMARstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Julio #P(F>Frms)
+#1-pnorm(1,FrprJUL,FrprJULstd,lower.tail = TRUE,log.p = F)
+
+### *Probabilidad de estar en zona de sobreexplotacion*
+
+#Asesor?a Septiembre #P(BD<BDrms) 
+pc1<-pnorm(0.9,rprSEPT,rprSEPTstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Marzo #P(BD<BDrms) 
+pc2<-pnorm(0.9,rprMAR,rprMARstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Julio  #P(BD<BDrms) 
+#pnorm(0.9,rprJUL,rprJULstd,lower.tail = TRUE,log.p = F)
+
+### *Probabilidad de estar en zona de colapso*
+
+#Asesor?a Septiembre #P(BD<BDrms) 
+pd1<-pnorm(0.5,rprSEPT,rprSEPTstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Marzo 2019 #P(BD<BDrms) 
+pd2<-pnorm(0.5,rprMAR,rprMARstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Julio 2019 #P(BD<BDrms) 
+#pnorm(0.5,rprJUL,rprJULstd,lower.tail = TRUE,log.p = F)
+
+### *Probailidad de sobrepesca*
+#Asesor?a Septiembre #P(F>Frms)
+pe1<-1-pnorm(1.1,FrprSEPT,FrprSEPTstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Marzo #P(F>Frms)
+pe2<-1-pnorm(1.1,FrprMAR,FrprMARstd,lower.tail = TRUE,log.p = F)
+
+#Asesor?a Julio #P(F>Frms)
+#1-pnorm(1.1,FrprJUL,FrprJULstd,lower.tail = TRUE,log.p = F)
+```
+
+#
+**Tabla 22.** Puntos Biológicos de referencia (PBRs), probabilidad de estar bajo BD~RMS~ y sobre F~RMS~ y la probabilidad de estar en sobreexplotación, colapsado o sobrepesca. Estimaciones realizadas en las asesorías de **septiembre 2019 y marzo 2020**.
+
+```{r Tabla 22, echo=FALSE}
+Tabla4.1<-rbind("F~RMS~"=c(round(FRMS1,2),round(FRMS2,2)),"BD~RMS~"=c(round(BRMS1/10^3,0),round(BRMS2/10^3,0)),"BD~LIM~"=c(round(BLIM1/10^3,0),round(BLIM2/10^3,0)),"p(BD~last~<BD~RMS)~"=round(c(pa1,pa2),2),"p(F~last~>F~RMS~)"=round(c(pb1,pb2),2),"p(BD~last~<0.9BD~RMS~)"=round(c(pc1,pc2),2),"p(BD~last~<0.5BD~RMS~)"=round(c(pd1,pd2),2),"p(F~last~>1.1F~RMS~)"=round(c(pe1,pe2),2))
+colnames(Tabla4.1)<-c("Sept","Mar")
+kable(Tabla4.1)
+```
+
+
+
+> BD~last~ corresponde a *BD~2018/19~ para MAE0919 y BD~2019/20~ para MAE0320*  
+
+> F~last~ corresponde a *F~2018/19~ para MAE0919 y F~2019/20~ para MAE0320*
+
+> p(BD~last~<BD~RMS~) = Probabilidad de que BD del año más reciente sea menor a BD~RMS~
+
+> p(F~last~>F~RMS~) = Probabilidad que la Ft del año más reciente sea menor a F~RMS~
+
+> p(BD~last~<0,9BD~RMS~) = Probabilidad de estar en sobreexplotación
+
+> p(BD~last~<BD~LIM~) = Probabilidad de estar en colapso
+
+> p(F~last~>1,1F~RMS~) = Probabilidad de estar en sobrepesca
+
+
+
+```{r Figura 41, echo=FALSE,fig.height=7,fig.width=10}
+
+source("C:\\InformeSardinacomun\\salidas\\funciones\\Fn_DiagramaFase.R")
+name1<-"Asesoría de Septiembre 2019"
+
+x <- c(1,1,2,3)
+m<-matrix(x,ncol=2)
+nf<-layout(m, widths=c(5,3), heights=c(1),
+respect=F)
+
+DiagramaFase(name1,years1,SpB1,SpBSE1,ln_Fyr1,ln_FSE1,FRMS1,BRMS1,BLIM1,FLIM1,color=F,dir.0,etiqueta=F)
+
+text(c(SpB1[1]/BRMS1,SpB1[nyears1]/BRMS1,SpB1[nyears1-1]/BRMS1),c(exp(ln_Fyr1[1])/FRMS1-0.05,exp(ln_Fyr1[nyears1])/FRMS1-0.05,exp(ln_Fyr1[nyears1-1])/FRMS1+0.05), c("1990/91","2018/19","2017/18"),cex=1.2)
+text(2.8,2.8,"a)",cex=1.5)
+
+plot(xbs,ybs,type="l",ylab="Densidad de probabilidad",
+	xlab="BD2018_19/BDrms",las=0,yaxs= "i",ylim=c(0,max(ybs)+0.5),xlim=c(min(xbs),max(xbs)))
+polygon(xxbs,yybs,col=gray(0.8,0.5),border="gray80")
+lines(xbs,ybs,lwd=2)
+text(icbs[3],max(ybs)+0.2,paste("IC95% = [",round(icbs[1],3),"-",round(icbs[2],3),"]",sep=" "),cex=1.2)
+text(2.2,1.8,"b)",cex=1.5)
+box()
+
+plot(xfs,yfs,type="l",ylab="Densidad de probabilidad",
+	xlab="F2018_19/Frms",las=0,yaxs= "i",ylim=c(0,max(yfs)+0.5),xlim=c(min(xfs),max(xfs)))
+polygon(xxfs,yyfs,col=gray(0.8,0.5),border="gray80")
+lines(xfs,yfs,lwd=2)
+text(icfs[3],max(yfs)+0.2,paste("IC95% = [",round(icfs[1],3),"-",round(icfs[2],3),"]",sep=" "),cex=1.2)
+text(1.15,2.4,"c)",cex=1.5)
+box()
+
+```
+
+**Figura 41.**	(a) Diagrama de fases de explotación de la biomasa desovante respecto de la mortalidad por pesca de la evaluación de **septiembre 2019 (MAE0919)**. Los ejes están estandarizados a los valores que generan el RMS proxy. Cruz azul corresponde a los intervalos de confianza de la razón BD/BD~RMS~ y F/~RMS~. El año con cruz continua corresponde a *“Estatus completo”*. (b) la distribución de probabilidad de **BD~2019~/BD~RMS~** (c) la distribución de probabilidad **F~2019~/F~RMS~**.
+
+```{r Figura 42, echo=FALSE,fig.height=7,fig.width=10}
+
+source("C:\\InformeSardinacomun\\salidas\\funciones\\Fn_DiagramaFase2.R")
+name2<-"Asesoría de Marzo 2020"
+
+x <- c(1,1,2,3)
+m<-matrix(x,ncol=2)
+nf<-layout(m, widths=c(5,3), heights=c(1),
+respect=F)
+#par(mar=c(4,4,1,1)+0.5)
+
+DiagramaFase(name2,years2[1:nyears2-1],SpB2[1:nyears2-1],SpBSE2[1:nyears2-1],ln_Fyr2[1:nyears2-1],ln_FSE2[1:nyears2-1],SpB2[nyears2],SpBSE2[nyears2],ln_Fyr2[nyears2],ln_FSE2[nyears2],FRMS2,BRMS2,BLIM2,FLIM2,color=F,dir.1,etiqueta=F)
+
+text(c(SpB2[1]/BRMS2,SpB2[nyears2]/BRMS2,SpB2[nyears2-1]/BRMS2),c(exp(ln_Fyr2[1])/FRMS2-0.05,exp(ln_Fyr2[nyears2])/FRMS2-0.05,exp(ln_Fyr2[nyears2-1])/FRMS2+0.05), c("1990/91","2019/20","2018/19"),cex=1.2)
+text(2.8,2.8,"a)",cex=1.5)
+
+#par(mar=c(4,4,1,1)+0.5)
+plot(xbm,ybm,type="l",ylab="Densidad de probabilidad",
+	xlab="BD2019_20/BDrms",las=0,yaxs= "i",ylim=c(0,max(ybm)+0.5),xlim=c(min(xbm),max(xbm)))
+polygon(xxbm,yybm,col=gray(0.8,0.5),border="gray80")
+lines(xbm,ybm,lwd=2)
+text(icbm[3],max(ybm)+0.2,paste("IC95% = [",round(icbm[1],3),"-",round(icbm[2],3),"]",sep=" "),cex=1.2)
+text(1.6,2,"b)",cex=1.5)
+box()
+
+#par(mar=c(4,4,1,1)+0.5)
+plot(xfm,yfm,type="l",ylab="Densidad de probabilidad",
+	xlab="F2019_20/Frms",las=0,yaxs= "i",ylim=c(0,max(yfm)+0.5),xlim=c(min(xfm),max(xfm)))
+polygon(xxfm,yyfm,col=gray(0.8,0.5),border="gray80")
+lines(xfm,yfm,lwd=2)
+text(icfm[3],max(yfm)+0.2,paste("IC95% = [",round(icfm[1],3),"-",round(icfm[2],3),"]",sep=" "),cex=1.2)
+text(1.6,1.8,"c)",cex=1.5)
+box()
+
+
+```
+
+
+**Figura 42.**	(a) Diagrama de fases de explotación de la biomasa desovante respecto de la mortalidad por pesca de la evaluación de **marzo (MAE0320)**. Los ejes están estandarizados a los valores que generan el RMS proxy. Cruz azul corresponde a los intervalos de confianza de la razón BD/BD~RMS~ y F/F~RMS~. El año con cruz continua corresponde a *“Estatus completo”* y la cruz con línea discontiuna a *Estatus incompleto*. (b) la distribución de probabilidad de **BD~2019~/BD~RMS~** (c) la distribución de probabilidad **F~2019~/F~RMS~**.
+
+\pagebreak 
+
+# DISCUSIÓN
+
+### 5.2.	Indicadores y condición del stock
+
+En relación a las tendencias de las variables poblacionales se observa que los reclutamientos han mostrado importantes fluctuaciones interanuales y en su historia conocida se aprecian tres períodos relevantes 
+
+a) Reclutamiento promedio del período 1991-2007 (Rprom. (1991-2007)) con los niveles más bajos de reclutamientos (115 mil millones de peces), 
+b) Rprom. (2008-2012) con los más altos niveles de reclutamiento (413 mil millones de peces) y 
+c) Rprom. (2013-2019) con reclutamientos medios en torno a 189 mil millones de peces. 
+
+En relación a los tres períodos identificados, el reclutamiento 2019 es un 35% menor del Rprom. (1991-2007), un 82% menor al Rprom. (2008-2012) y un 61% menor al Rprom. (2013-2019). La tendencia de la biomasa total muestra un importante crecimiento a partir del año 2008 que genera un cambio de nivel que se mantiene hasta el presente. Sin embargo, presenta una alta variabilidad producto de las fluctuaciones del reclutamiento. 
+
+Para el año 2019 se estimó una disminución del 35% respecto al promedio de los últimos 11 años de la serie (2008-2018) y un 2% mayor al promedio histórico de la serie (promedio 1991-2018 = 1,66 millones de t.). 
+
+La biomasa desovante del año 2018/19 fue un 71% mayor al promedio histórico y un 19% menor al promedio de los últimos 11 años. Dado que el modelo tiene una dinámica en año biológico, se asume que la biomasa desovante ocurre en agosto, (inicios del año biológico), además, la fracción adulta corresponde a los grupos de edad 1+ los cuales incrementaron en abundancia y peso en la evaluación actual y, por lo tanto, la biomasa desovante del año biológico 2018-19 no se ve afectada por la disminución del reclutamiento 2019. 
+
+La mortalidad por pesca (Ft) ha sido más bien baja, en general menor a la mortalidad natural (M=1,0 año-1), a partir del año 2013 se encuentra por bajo el valor de FRMS. La Ft 2018-2019 se estimó en 0,22, encontrándose un 26% bajo FRMS de acuerdo a lo estimado en la evaluación actual (septiembre 2019). 
+
+La condición estimada para el año 2018/19 con información completa se encuentra un 46% sobre BDRMS y un 26% bajo FRMS, con una probabilidad del 4% de encontrarse bajo BDRMS, de un 1% de estar en sobre-explotación y un 2% de probabilidad de estar en sobrepesca.
+
+
+\pagebreak 
+
+## ESTIMACIONES REALIZADAS EN ASESORIA DE SEPTIEMBRE
+### *Reclutamiento* 
+
+   * **Rprom1** = Reclutamiento promedio del período 1991-2007 (Rprom.(1991-2007))
+   * **Rprom2** = Reclutamiento promedio del período 2008-2012 (Rprom.(2008-2012))
+   * **Rprom3** = Reclutamiento promedio del período 2013-2019 (Rprom.(2013-2019))
+   * **RT2019** = Reclutamiento último año de evaluación
+   * **RT2018** = Reclutamiento penúltimo año de evaluación
+   
+```{r echo=FALSE}
+Rprom1 <-mean(Reclutas1[1:17]) #1991-2007 [1,17]
+Rprom2  <-mean(Reclutas1[18:22]) #2008-2012 [18,22]
+Rprom3 <-mean(Reclutas1[23:length(years1)]) #2013-2019 [23,29]
+RT2019 <-Reclutas1[length(years1)]
+RT2018 <-Reclutas1[length(years1)-1]
+
+Rprom1m <-mean(Reclutas2[1:17]) #1991-2007 [1,17]
+Rprom2m  <-mean(Reclutas2[18:22]) #2008-2012 [18,22]
+Rprom3m <-mean(Reclutas2[23:length(years2)]) #2013-2020 [23,30]
+RT2020m <-Reclutas2[length(years2)]
+RT2019m <-Reclutas2[length(years2)-1]
+RT2018m <-Reclutas2[length(years2)-2]
+
+salrecl_mar<-rbind(Rprom1=round(c(Rprom1,Rprom1m),0),Rprom2=round(c(Rprom2,Rprom2m),0),Rprom3=round(c(Rprom3,Rprom3m),0),RT2018=c(RT2018,RT2018m),RT2019=c(RT2019,RT2019m),RT2020=c(NA,RT2020m),"R2019/Rprom1"=round(c(1-(RT2019/Rprom1),1-(RT2019m/Rprom1m)),2),"R2019/Rprom2"=round(c(1-(RT2019/Rprom2),1-(RT2019m/Rprom2m)),2),"R2019/Rprom3"=round(c(1-(RT2019/Rprom3),1-(RT2019m/Rprom3m)),2),"R2019/R2018"=round(c(1-(RT2019/RT2018),1-(RT2019m/RT2018m)),2),"R2020/Rprom1"=round(c(NA,1-(RT2020m/Rprom1m)),2),"R2020/Rprom2"=round(c(NA,1-(RT2020m/Rprom2m)),2),"R2020/Rprom3"=round(c(NA,1-(RT2020m/Rprom3m)),2),"R2020/R2019"=round(c(NA,1-(RT2020m/RT2019m)),2))
+
+colnames(salrecl_mar)<-c("Sept","Mar")
+
+kable(salrecl_mar)
+```
+
+
+
+### *Biomasa total*
+```{r echo=FALSE}
+BThist <-mean(BT1[1:length(years1)-1])
+BTrec  <-mean(BT1[18:(length(years1)-1)])
+BT2019 <-BT1[length(years1)]
+BT2018 <-BT1[length(years1)-1]
+
+salBt_mar<-rbind(BThist,BTrec,BT2019,BT2018)
+kable(salBt_mar)
+```
+
+**Raz?n**
+```{r echo=FALSE}
+Bt2019_BThist <-1-(BT2019/BThist)
+Bt2019_Btrec  <-1-(BT2019/BTrec)
+Bt2019_Bt2018 <-1-(BT2019/BT2018)
+
+razonBt_mar<-rbind(Bt2019_BThist,Bt2019_Btrec,Bt2019_Bt2018)
+kable(razonBt_mar)
+```
+
+### *Biomasa Desovante*
+
+```{r echo=FALSE}
+BDhist <-mean(SSBt1[1:length(years1)-1])
+BDrec  <-mean(SSBt1[18:(length(years1)-1)])
+BD2019 <-SSBt1[length(years1)]
+BD2018 <-SSBt1[length(years1)-1]
+
+salBd_mar<-rbind(BDhist,BDrec,BD2019,BD2018)
+kable(salBd_mar)
+```
+
+**Raz?n**
+```{r echo=FALSE}
+Bd2019_Bdhist <-1-(BD2019/BDhist)
+Bd2019_Bdrec  <-1-(BD2019/BDrec)
+Bd2019_Bd2018 <-1-(BD2019/BD2018)
+
+razonBd_mar<-rbind(Bd2019_Bdhist,Bd2019_Bdrec,Bd2019_Bd2018)
+kable(razonBd_mar)
+```
+
+
+
+
+## ESTIMACIONES REALIZADAS EN ASESORIA DE MARZO
+### *Reclutamiento* 
+
+**RThist**= Reclutamiento medio hist?rico [1991 - 2018]
+
+**RTrec** = reclutamiento promedio ?ltimos 11 a?os (2008 - 2018)
+
+**RT2020** = Reclutamiento ?ltimo a?o de evaluaci?n
+
+**RT2019** = reclutamiento pen?ltimo a?o de evaluaci?n
+
+```{r echo=FALSE}
+RThist <-mean(Reclutas2[1:length(years2)-1])
+RTrec  <-mean(Reclutas2[18:(length(years2)-1)])
+RT2020 <-Reclutas2[length(years2)]
+RT2019 <-Reclutas2[length(years2)-1]
+
+salrecl_mar<-rbind(RThist,RTrec,RT2020,RT2019)
+kable(salrecl_mar)
+```
+
+**Raz?n**
+```{r echo=FALSE}
+Rt2020_RThist <-1-(RT2020/RThist)
+Rt2020_Rtrec  <-1-(RT2020/RTrec)
+Rt2020_Rt2019 <-1-(RT2020/RT2019)
+
+razonrecl_mar<-rbind(Rt2020_RThist,Rt2020_Rtrec,Rt2020_Rt2019)
+kable(razonrecl_mar)
+```
+
+### *Biomasa total*
+```{r echo=FALSE}
+BThist <-mean(BT2[1:length(years2)-1])
+BTrec  <-mean(BT2[18:(length(years2)-1)])
+BT2020 <-BT2[length(years2)]
+BT2019 <-BT2[length(years2)-1]
+
+salBt_mar<-rbind(BThist,BTrec,BT2020,BT2019)
+kable(salBt_mar)
+```
+
+**Raz?n**
+```{r echo=FALSE}
+Bt2020_BThist <-1-(BT2020/BThist)
+Bt2020_Btrec  <-1-(BT2020/BTrec)
+Bt2020_Bt2019 <-1-(BT2020/BT2019)
+
+razonBt_mar<-rbind(Bt2020_BThist,Bt2020_Btrec,Bt2020_Bt2019)
+kable(razonBt_mar)
+```
+
+### *Biomasa Desovante*
+
+```{r echo=FALSE}
+BDhist <-mean(SSBt2[1:length(years2)-1])
+BDrec  <-mean(SSBt2[18:(length(years2)-1)])
+BD2020 <-SSBt2[length(years2)]
+BD2019 <-SSBt2[length(years2)-1]
+
+salBd_mar<-rbind(BDhist,BDrec,BD2020,BD2019)
+kable(salBd_mar)
+```
+
+**Raz?n**
+```{r echo=FALSE}
+Bd2020_Bdhist <-1-(BD2020/BDhist)
+Bd2020_Bdrec  <-1-(BD2020/BDrec)
+Bd2020_Bd2019 <-1-(BD2020/BD2019)
+
+razonBd_mar<-rbind(Bd2020_Bdhist,Bd2020_Bdrec,Bd2020_Bd2019)
+kable(razonBd_mar)
+
+
+```
+
+```{r}
+Sys.setlocale("LC_ALL", "es_US.UTF-8")
+
+Sys.setenv(LANGUAGE="es")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
