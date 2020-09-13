@@ -1,2 +1,3 @@
-# pruebas
-Averiguar como eliminar repositorios que no uso
+# Función para análisis retrospectivo
+
+por hacer
